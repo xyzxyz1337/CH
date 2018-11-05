@@ -1,0 +1,60 @@
+.color-white{
+	background-color: white !important ;
+	margin-top: 7px;
+}
+
+.form-group textarea {
+	height: 140px;
+}
+
+.tags-area{
+	position: inherit;
+	font-size: small;
+	color: gray;
+}
+.tags-area p {
+	padding-left: 10px;
+}
+
+.logo{
+    position: relative;
+}
+.logo img {
+    position: absolute;
+	width: 500px;
+	height: 280px;
+    margin: auto;
+    margin-top: 20px;
+ 	margin-bottom: 30px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+   }
+
+.search-string{
+	margin-top: 20rem;
+	width: 430px;
+	border-color: #28a745;
+}
+
+.btn-pos{
+	position: relative;
+	left: 255px;
+	bottom: 38px;
+	/*font-size:small;*/
+
+}
+
+.str-btn{
+	position: relative;
+	right: 33px;
+}
+
+.m-form {
+	margin: 10px;
+}
+
+#id_category{
+	margin: 10px;
+	
+}

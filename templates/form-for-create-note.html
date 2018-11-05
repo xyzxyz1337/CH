@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+
+{%block title%}
+<title>CreatePost</title>
+{%endblock%}
+
+{%block content%}
+
+<div class="container">
+	<dir class="row">
+		
+	<div class="col-11  p-lg-2">
+			<form method="post">
+				{%csrf_token%}
+
+				{{form.as_table}}
+
+				<center>
+				<button class="btn btn-outline-success" type="submit">Создать</button>
+				</center>
+			</form>
+	</div>
+	
+	</dir>
+
+</div>
+{%endblock%}

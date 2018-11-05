@@ -1,0 +1,58 @@
+{% extends 'base.html'  %}
+{% load staticfiles %}
+
+{%block title%}
+
+<title>Feed</title>
+
+{%endblock%}
+
+
+{% block content %}
+
+<div class="container p-3 col-5">	
+
+	{% for note in notes %}
+
+		<div>
+			<p class="text-right text-dark">{{ note.datePublished }}</p>
+		</div>
+
+		<div class="float-right">
+			<form method="post">
+				{%csrf_token%}
+
+				<button><a href="http://localhost:8000/feed/edit/{{note.id}}">Изменить</a></button>
+				<button><a href="http://localhost:8000/feed/delete/{{note.id}}">Удалить</a></button>
+
+				<input type="submit" value="Редактировать" name="edit"  class="btn btn-sm btn-outline-warning btn-right"> 
+				<input type="submit" value="Удалить" name="delete"  class="btn  btn-sm btn-outline-danger btn-right">
+			</form>
+		</div>
+
+		<div class="form-group">
+			<label>Заголовок</label>
+			<label class="form-control border-0 color-white" readonly>{{ note.noteName }}</label>
+		</div>
+
+		<div class="form-group">
+			<label>Описание</label>
+			<textarea class="form-control color-white" rows="3" readonly>{{ note.noteText }}</textarea>
+		</div>
+
+		<div class="row">
+			<div class="tags-area col-auto mr-auto">
+				<p class="">{{note.noteTags}}</p>
+			</div>
+
+			<div class="col-lg-3 col-auto ">
+				<p style="color: gray;">Просмотры {{note.noteCounter}}</p>
+			</div>	
+		</div>
+
+	{%endfor%}
+ </div>
+
+
+
+{%endblock%}

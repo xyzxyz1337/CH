@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<link rel="icon" type="image" href="{% static "img/favicon.ico" %}" />
+	<link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+	{%block head%} 
+
+	{%endblock%}
+	
+	{%block title%}
+	
+	<title>SearchEngine</title>
+	{%endblock%}
+</head>
+<body>
+	<nav class="navbar navbar- bg-success justify-content-between">
+		<a href="/" style="color: black;" class="navbar-brand">CheatSheet</a>
+		<form class="form-inline">
+			<button href="" class="btn btn-warning">Нерешенные вопросы</button>
+		</form>
+	</nav>
+
+		{% block content %}
+		<!-- Поисковая выдача -->
+		{%endblock%}
+
+
+</body>
+</html>

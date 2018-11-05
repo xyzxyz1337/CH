@@ -1,0 +1,63 @@
+{% extends 'base.html'  %}
+{% load staticfiles %}
+
+{%block title%}
+
+<title>Feed</title>
+
+{%endblock%}
+
+{%block head%}
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="{% static "js/btn.js" %}" ></script>
+
+{%endblock%}
+
+{% block content %}
+
+<div class="container p-3 col-5">	
+
+	{% for res in result %}
+
+		<div>
+			<p class="text-right text-dark">{{ res.datePublished }}</p>
+		</div>
+
+		<div class="float-right">
+			<form method="post">
+				{%csrf_token%}
+
+				<button><a href="edit/{{res.id}}">Изменить</a></button>
+				<button><a href="delete/{{res.id}}">Удалить</a></button>
+
+				<input type="submit" value="Редактировать" name="edit"  class="btn btn-sm btn-outline-warning btn-right"> 
+				<input type="submit" value="Удалить" name="delete"  class="btn  btn-sm btn-outline-danger btn-right">
+			</form>
+		</div>
+
+		<div class="form-group">
+			<label>Заголовок</label>
+			<label class="form-control border-0 color-white" readonly>{{ res.noteName }}</label>
+		</div>
+
+		<div class="form-group">
+			<label>Описание</label>
+			<textarea class="form-control color-white" rows="3" readonly>{{ res.noteText }}</textarea>
+		</div>
+
+		<div class="row">
+			<div class="tags-area col-auto mr-auto">
+				<p class="">{{res.noteTags}}</p>
+			</div>
+
+			<div class="col-lg-3 col-auto ">
+				<p style="color: gray;">Просмотры {{res.noteCounter}}</p>
+			</div>	
+		</div>
+
+ </div>
+
+
+{%endfor%}
+{%endblock%}
