@@ -28,11 +28,9 @@
 			<form method="post">
 				{%csrf_token%}
 
-				<button><a href="edit/{{res.id}}">Изменить</a></button>
-				<button><a href="delete/{{res.id}}">Удалить</a></button>
+				<a class="button btn btn-sm btn-outline-warning btn-right" href="{% url "edit" res.id %}">Редактировать</a>
+				<a class="button btn btn-sm btn-outline-danger btn-right" href="{% url "delete" res.id %}">Удалить</a>
 
-				<input type="submit" value="Редактировать" name="edit"  class="btn btn-sm btn-outline-warning btn-right"> 
-				<input type="submit" value="Удалить" name="delete"  class="btn  btn-sm btn-outline-danger btn-right">
 			</form>
 		</div>
 

@@ -6,7 +6,7 @@ from .noteForm import createNoteForm
 from blog.models import Post
 
 
-def root(request):
+def index(request):
     return render(request, 'index.html')
 
 
@@ -31,6 +31,9 @@ def search(request):
         try:
             results = Post.objects.annotate(search=SearchVector(
                 'noteName', 'noteTags'),).filter(search=query)
+
+            if results.count() is 0:
+                return HttpResponse('По запросу {} мы искали, но ничего не нашли.'.format(query))
 
             # if request.COOKIE.get('id') == 1337:
             for result in results:
