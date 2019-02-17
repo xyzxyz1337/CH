@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.contrib.postgres.search import SearchVector
 from django.db.models import F
 
-from .noteForm import createNoteForm
+from mainPage.noteForm import createNoteForm
 from blog.models import Post
 
 
@@ -11,7 +11,15 @@ def index(request):
 
 
 def edit(request, id):
-    pass
+    post = Post.objects.get(id=id)
+
+    note = createNoteForm()
+    note.title = post.noteName
+    note.text = post.noteText
+    note.tags = post.noteTags
+    note.category = post.noteCategory
+
+    return render(request, 'form-for-create-note.html', {'form': note})
 
 
 def delete(request, id):
@@ -20,7 +28,7 @@ def delete(request, id):
         post.delete()
         return HttpResponseRedirect("/")
     except Post.DoesNotExist:
-        return HttpResponseNotFound("<h2>Post not found</h2>")
+        return HttpResponse('Объект не существует или был удален.')
 
 
 def search(request):

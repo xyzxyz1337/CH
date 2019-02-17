@@ -1,5 +1,4 @@
 {% extends 'base.html'  %}
-{% load staticfiles %}
 
 {%block title%}
 
@@ -22,11 +21,9 @@
 			<form method="post">
 				{%csrf_token%}
 
-				<button><a href="http://localhost:8000/feed/edit/{{note.id}}">Изменить</a></button>
-				<button><a href="http://localhost:8000/feed/delete/{{note.id}}">Удалить</a></button>
+				<a class="button btn btn-sm btn-outline-warning btn-right" href="{% url "edit" note.id %}">Редактировать</a>
+				<a class="button btn btn-sm btn-outline-danger btn-right" href="{% url "delete" note.id %}">Удалить</a>
 
-				<input type="submit" value="Редактировать" name="edit"  class="btn btn-sm btn-outline-warning btn-right"> 
-				<input type="submit" value="Удалить" name="delete"  class="btn  btn-sm btn-outline-danger btn-right">
 			</form>
 		</div>
 

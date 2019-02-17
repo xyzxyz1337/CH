@@ -2,8 +2,8 @@ from django.db import models
 
 
 class Post(models.Model):
-    """docstring for Note
-            This is page with content"""
+    """In context name,text,couter,
+       tags,category"""
 
     def __str__(self):
         return self.noteName
