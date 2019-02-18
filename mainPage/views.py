@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
-from django.contrib.postgres.search import SearchVector
-from django.db.models import F
+# from django.contrib.postgres.search import SearchVector
+from django.db.models import Q
 
 from mainPage.noteForm import createNoteForm
 from blog.models import Post
@@ -37,20 +37,24 @@ def search(request):
         query = request.GET['q']
 
         try:
-            results = Post.objects.annotate(search=SearchVector(
-                'noteName', 'noteTags'),).filter(search=query)
+            # for pgsql
+            # results = Post.objects.annotate(search=SearchVector(
+            #     'noteName', 'noteTags'),).filter(search=query)
+
+            results = Post.objects.filter(
+                Q(noteName=query) | Q(noteTags=query))
 
             if results.count() is 0:
                 return HttpResponse('По запросу {} мы искали, но ничего не нашли.'.format(query))
 
             # if request.COOKIE.get('id') == 1337:
-            for result in results:
-                view = Post.objects.get(noteName=result.noteName)
-                view.noteCounter = F('noteCounter') + 1
-                view.save()
+            # for result in results:
+            #     view = Post.objects.get(noteName=result.noteName)
+            #     view.noteCounter = F('noteCounter') + 1
+            #     view.save()
 
             response = render(request, 'search.html', {'result': results})
-            response.set_cookie(key='id', value=1337)
+            # response.set_cookie(key='id', value=1337)
 
             return response
 
